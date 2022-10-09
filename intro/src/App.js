@@ -1,11 +1,19 @@
+import React, { Component } from 'react'
 import CategoryList from "./CategoryList";
 import Navi from "./Navi";
 import ProductList from "./ProductList";
 import { Container, Row, Col } from "reactstrap"
 
-function App() {
+export default class App extends Component{
+
+  state={currentCategory: ""}
+
+  changeCategory = (category) => {
+    this.setState({ currentCategory: category.categoryName })
+}
+ render(){
   let Productinfo={title:"Product List"}
-  let Categoryinfo={title:"Category List"}
+ let Categoryinfo={title:"Category List"}
   return (
     <div>
       <Container>
@@ -14,7 +22,7 @@ function App() {
         </Row>
         <Row>
           <Col xs="3">
-            <CategoryList info={Categoryinfo}></CategoryList>
+            <CategoryList currentCategory={this.state.currentCategory} changeCategory={this.changeCategory} info={Categoryinfo}></CategoryList>
           </Col>
           <Col xs="9">
             <ProductList info={Productinfo}></ProductList>
@@ -27,5 +35,7 @@ function App() {
     </div>
   );
 }
+}
 
-export default App;
+
+
