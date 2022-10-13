@@ -1,29 +1,44 @@
-import React, { Component } from 'react'
-
+import React, { useState } from 'react';
 import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
   Nav,
   NavItem,
   NavLink,
+  NavbarText,
 } from 'reactstrap';
 import CartSummary from './CartSummary';
 
 
+function Navi({cart,removeFromCart}) {
+  const [isOpen, setIsOpen] = useState(false);
 
-export default class navi extends Component {
-  render() {
-    return (
-      <div>
-      <Nav
-      >
-      
-        <NavItem>
-          <CartSummary cart={this.props.cart}></CartSummary>
-        </NavItem>
-        
-      </Nav></div>
-    )
-  }
+  const toggle = () => setIsOpen(!isOpen);
+
+  return (
+    <div>
+      <Navbar {...cart}>
+        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="me-auto" navbar>
+            <NavItem>
+              <NavLink href="/components/">Components</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="https://github.com/reactstrap/reactstrap">
+                GitHub
+              </NavLink>
+            </NavItem>
+            <CartSummary removeFromCart={removeFromCart} cart={cart}></CartSummary>
+          </Nav>
+          <NavbarText>Simple Text</NavbarText>
+        </Collapse>
+      </Navbar>
+    </div>
+  );
 }
 
-
-
+export default Navi;

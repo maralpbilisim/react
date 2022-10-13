@@ -3,6 +3,7 @@ import CategoryList from "./CategoryList";
 import Navi from "./Navi";
 import ProductList from "./ProductList";
 import { Container, Row, Col } from "reactstrap"
+import alertify from "alertifyjs"
 
 export default class App extends Component {
 
@@ -33,6 +34,13 @@ export default class App extends Component {
       newCart.push({product:product,quantity:1})
     }
     this.setState({cart:newCart})
+    alertify.success(product.productName +" karta eklendi",2)
+  }
+
+  removeFromCart=(product)=>{
+    let newCart=this.state.cart.filter(c=>c.product.id!==product.id)
+    this.setState({cart:newCart})
+    
   }
   render() {
     let Productinfo = { title: "Product List" }
@@ -41,7 +49,7 @@ export default class App extends Component {
       <div>
         <Container>
          
-            <Navi cart={this.state.cart}></Navi>
+            <Navi removeFromCart={this.removeFromCart}cart={this.state.cart}></Navi>
           
           <Row>
             <Col xs="3">
@@ -64,6 +72,5 @@ export default class App extends Component {
     );
   }
 }
-
 
 

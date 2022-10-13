@@ -1,47 +1,44 @@
-import React, { Component } from 'react'
 import {
-    Badge,
-    NavItem,
-    NavLink,
-} from 'reactstrap';
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Badge,
+  NavItem,
+  NavLink,
+ } from 'reactstrap';
 
-export default class CartSummary extends Component {
-    renderSummary() {
+ function CartSummary({cart,removeFromCart}) {
       return(<div>
-        <NavItem>
-        <NavLink
-            href="#"
-        >
-           Your CARD
-        </NavLink>
-        </NavItem>
-        <NavItem>
-        {
-            this.props.cart.map(cartItem => (
-                <NavLink key={cartItem.product.id} active href="#">{cartItem.product.productName}
-                <Badge color="success">{cartItem.quantity}</Badge>
-                </NavLink>
-            ))
-        }
-    </NavItem>
+        <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+              YourCart{cart.length}
+              </DropdownToggle>
+              <DropdownMenu right>
+                {
+                   cart.length>0?
+                    cart.map(cartItem=>(
+                        <DropdownItem key={cartItem.product.id}>
+                           <Badge color="danger" onClick={()=>removeFromCart(cartItem.product)}>X</Badge>
+                            {cartItem.product.productName}
+                        <Badge color="success">{cartItem.quantity}</Badge>
+                        </DropdownItem>
+                    )
+                        ):<div>
+                            <NavItem>
+                                <NavLink>
+                                    empty card
+                                </NavLink>
+                            </NavItem>
+                        </div>
+                    }
+                <DropdownItem divider />
+                <DropdownItem>Reset</DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
     </div>
       )
        
     }
-renderEmptyCard(){
-    return(<NavItem>
-        <NavLink>Empty Cart</NavLink>
-    </NavItem>)
+    export default CartSummary;
 
-}
-    render() {
-        
-        return (
-            <div>
-
-            {this.props.cart.length>0?this.renderSummary():this.renderEmptyCard()}
-
-            </div>
-        )
-    }
-}
