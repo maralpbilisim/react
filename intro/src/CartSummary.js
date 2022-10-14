@@ -7,6 +7,7 @@ import {
   NavItem,
   NavLink,
  } from 'reactstrap';
+ import {Link} from 'react-router-dom';
 
  function CartSummary({cart,removeFromCart}) {
       return(<div>
@@ -33,7 +34,9 @@ import {
                         </div>
                     }
                 <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
+                <DropdownItem>
+                  <Link to="cart">go to cart</Link>
+                </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
     </div>

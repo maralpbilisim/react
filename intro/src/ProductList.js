@@ -3,11 +3,6 @@ import { Table,Button } from 'reactstrap';
 
 export default class ProductList extends Component {
 
-  constructor(props) {
-    super(props);
-    state: { }
-  }
-
   render() {
     return (
       <div>
