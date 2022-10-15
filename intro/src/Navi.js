@@ -10,9 +10,9 @@ import {
   NavbarText,
 } from 'reactstrap';
 import CartSummary from './CartSummary';
+import { Link } from 'react-router-dom';
 
-
-function Navi({cart,removeFromCart}) {
+function Navi({ cart, removeFromCart }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -25,7 +25,16 @@ function Navi({cart,removeFromCart}) {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink href="/components/">Components</NavLink>
+              <NavLink>
+                <Link to="/form1"> formdemo1</Link>
+              </NavLink>
+
+            </NavItem>
+            <NavItem>
+              <NavLink>
+                <Link to="/form2"> formdemo2</Link>
+              </NavLink>
+
             </NavItem>
             <NavItem>
               <NavLink href="https://github.com/reactstrap/reactstrap">
