@@ -1,9 +1,12 @@
-
+import ClassA from "./classA";
 function App() {
   return (
     <div className="mydiv">
-   <h2>Welcome to React!</h2> <br />
-    <p>Be sure to close all tags!</p>
+      <h1>To do list</h1>
+      <h2>Today</h2>
+    <ClassA list={["walk","cook","bake"]}/>
+    <h2>Tomorrow</h2>
+    <ClassA list={["study","code","eat"]}/>
     <hr />
     </div>
   );
